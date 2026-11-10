@@ -1,0 +1,7 @@
+users:
+  stephane:
+    password: "$argon2id$v=19$m=65536,t=3,p=4$7/G4ZXYb0OAshpH1ZTygAQ$dqm1YSyTB7Tpqaxk/12ADkPNVaO6AzCYTfHiwTNlhWk"
+    email: "stephane@local"
+    displayname: "Stephane"
+
+

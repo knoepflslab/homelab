@@ -1,0 +1,43 @@
+# ========================
+# ENTRY POINTS
+# ========================
+entryPoints:
+  websecure:
+    address: ":443"
+  web:
+    address: ":80"
+# ========================
+# PROVIDERS
+# ========================
+providers:
+  file:
+    directory: "/etc/traefik/dynamic"
+    watch: true
+
+# ========================
+# API / DASHBOARD
+# ========================
+api:
+  dashboard: true
+  insecure: false
+
+serversTransport:
+  insecureSkipVerify: true
+# ========================
+# LETS ENCRYPT TLS
+# ========================
+certificatesResolvers:
+  letsencrypt:
+    acme:
+      email: "ton-email@domaine.com"
+      storage: "/etc/traefik/acme.json"
+      httpChallenge:
+        entryPoint: web
+
+# ========================
+# OPTIONAL LOGS (debug utile)
+# ========================
+log:
+  level: INFO
+
+accessLog: {}

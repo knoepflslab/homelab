@@ -1,0 +1,19 @@
+http:
+  routers:
+    esx:
+      rule: Host(`esx.homelab.dataflowlab.cloud`)
+      entryPoints:
+        - websecure
+      tls:
+        certResolver: letsencrypt 
+      service: esx
+      middlewares:
+        - authelia
+      priority: 10
+
+  services:
+    esx:
+      loadBalancer:
+        servers:
+          - url: "https://192.168.1.171"
+

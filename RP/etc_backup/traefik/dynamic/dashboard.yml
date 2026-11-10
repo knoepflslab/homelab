@@ -1,0 +1,24 @@
+http:
+  routers:
+
+    # ✅ ACME (PRIORITAIRE)
+    acme:
+      entryPoints:
+        - web
+      rule: "PathPrefix(`/.well-known/acme-challenge/`)"
+      service: noop@internal
+      priority: 100
+
+    # ✅ TON DASHBOARD
+    traefik-dashboard:
+      rule: "Host(`homelab.dataflowlab.cloud`)"
+      service: api@internal
+      entryPoints:
+        - websecure
+      tls:
+        certResolver: letsencrypt
+
+  middlewares:
+    redirect-to-https:
+      redirectScheme:
+        scheme: https

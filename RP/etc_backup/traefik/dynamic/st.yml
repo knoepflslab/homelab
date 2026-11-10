@@ -1,0 +1,19 @@
+http:
+  routers:
+    st:
+      rule: Host(`st.homelab.dataflowlab.cloud`)
+      entryPoints:
+        - websecure
+      tls:
+        certResolver: letsencrypt 
+      service: st
+      middlewares:
+        - authelia
+      priority: 10
+
+  services:
+    st:
+      loadBalancer:
+        servers:
+          - url: "https://192.168.1.45:8444"
+

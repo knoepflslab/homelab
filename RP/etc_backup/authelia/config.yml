@@ -1,0 +1,38 @@
+server:
+  address: 0.0.0.0:9091
+
+log:
+  level: info
+  file_path: /var/log/authelia/authelia.log
+
+session:
+  cookies:
+    - domain: "dataflowlab.cloud"
+      authelia_url: "https://homelab.dataflowlab.cloud/auth"
+      same_site: none
+
+authentication_backend:
+  file:
+    path: /etc/authelia/users.yml
+
+access_control:
+  default_policy: deny
+  rules:
+    - domain: esx.homelab.dataflowlab.cloud
+      policy: one_factor
+    - domain: st.homelab.dataflowlab.cloud
+      policy: one_factor
+    - domain: wiki.homelab.dataflowlab.cloud
+      policy: one_factor
+storage:
+  local:
+    path: /etc/authelia/storage.db
+  encryption_key: "48dbad779ed1277ab62188d29dda245c01f42d444bdd8126cdc747483e0acde4"
+
+identity_validation:
+  reset_password:
+    jwt_secret: "48dbad779ed1277ab62188d29dda245c01f42d444bdd8126cdc747483e0acde4"
+
+notifier:
+  filesystem:
+    filename: /var/log/authelia/notifications.log
